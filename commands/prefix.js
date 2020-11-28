@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
 
         if(!args[0]) return message.reply("Gelieve een prefix te noemen!");
         prefixes[message.guild.id] = {
-            prefix: args[0]
+            prefix: args[1]
 
         }
         fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) => {
@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
         var embed = new discord.MessageEmbed()
         .setColor("RANDOM")
         .setTitle("Prefix")
-        .setDescription(`Gezet naar: ${args[0]}`);
+        .setDescription(`Gezet naar: ${args[1]}`);
 
         message.channel.send(embed);
     }
