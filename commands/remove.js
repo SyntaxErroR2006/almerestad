@@ -4,7 +4,9 @@ module.exports.run = async (client, message, args) => {
 
     var categoryID = "656193910863036426";
 
-    if (!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Jij kan dit niet doen.");
+    var role = member.roles.cache.some(role => role.name === 'Bot Developer🔨');
+
+    if(!role) return message.channel.send("U kan dit niet doen.")
 
     if (message.channel.parentID != categoryID) return message.reply("Je bent niet in een ticket.");
 
