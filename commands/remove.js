@@ -4,9 +4,9 @@ module.exports.run = async (client, message, args) => {
 
     var categoryID = "656193910863036426";
 
-    var role = member.roles.cache.some(role => role.name === 'Bot Developer🔨');
+    var role = message.member.roles.cache.some(role => role.name === 'Bot Developer🔨');
 
-    if(!role) return message.channel.send("U kan dit niet doen.")
+    if (!role) return message.channel.send("U kan dit niet doen.")
 
     if (message.channel.parentID != categoryID) return message.reply("Je bent niet in een ticket.");
 
@@ -47,13 +47,13 @@ module.exports.run = async (client, message, args) => {
                 VIEW_CHANNEL: false
             });
 
-            message.channel.send(embedK).then(msg => msg.delete({timeout: 10000}));
+            message.channel.send(embedK).then(msg => msg.delete({ timeout: 10000 }));
 
-        }else if(emoji == "❌"){
+        } else if (emoji == "❌") {
 
             msg.delete();
 
-            message.reply("Verwijdering geannuleerd.").then(msg => msg.delete({timeout: 5000}));
+            message.reply("Verwijdering geannuleerd.").then(msg => msg.delete({ timeout: 5000 }));
         }
 
     });
@@ -70,7 +70,7 @@ async function promptMessage(message, author, time, reactions) {
 
     const filter = (reaction, user) => reactions.includes(reaction.emoji.name) && user.id === author.id;
 
-    return message.awaitReactions(filter, { max: 1, time: time}).then(collected => collected.first() && collected.first().emoji.name);
+    return message.awaitReactions(filter, { max: 1, time: time }).then(collected => collected.first() && collected.first().emoji.name);
 }
 
 module.exports.help = {
